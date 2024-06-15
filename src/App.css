@@ -1,38 +1,465 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-image: url('https://userstyles.org/style_screenshots/262815_after.png?r=1712304012');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: -350;
+  background-position-y: 0;
+  width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: auto;
+  z-index: -1; /* Keeps the background behind all other content */
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+ul{
+  list-style: none;
+}
+.title{
+  margin: 0;
+}
+
+.title h1{
+  font-size: 30px;
+  font-weight: 500px;
+}
+.hover-info h3{
+  font-size: 18px;
+  font-weight: 550;
+  color: whitesmoke;
+}
+
+h1, h2, h3{
+  color: whitesmoke;
+  margin: 3px;
+}
+
+
+h2, h3{
+  color:rgb(2, 2, 2);
+}
+
+.main-title, .flower-title h2, .bug-title{
+  color:whitesmoke;
+}
+
+
+.title h1{
+  font-size: 50px;
+}
+
+.container, .island-container, .flower-container{
+  display:flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column;
+  width: 100%;
+  overflow:auto;
+}
+
+.island-container{
+  margin: 10px 0px;
+
+}
+
+/* --------------------------- for the villager's boxes ---------------------*/
+.villager-scroll, .fish-list{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  flex-wrap: wrap;
+  border-radius: 12px;
+  width: 65%;
+  padding: 5px;
+  margin: 10px;
+  color:rgb(0, 0, 0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor:pointer;
+}
+.villager-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  min-width: 250px;
+  width: 100%;
+  flex: 1;
+  margin: 6px;
+  padding: 8px;
+  border-radius: 12px;
+  transition: "ease-in" 0.5s;
+}
+.villager-icon{
+  border-radius: 12px;
+  width: 50%;
+  margin: 4px;
+}
+
+.villager-container h2{
+  text-decoration:underline;
+  font-size: 35px;
+}
+
+.villager-description{
+  display:none;
+  padding: 10px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.4s ease; /* Smooth transition */
+}
+
+.villager-container:hover .villager-description{
+  opacity: 1; /* Show on hover */
+}
+
+.villager-name{
+  width: 50%;
+}
+
+.villager-info{
+  display:none;
+}
+
+.villager-box {
+  display: flex;
+  flex-wrap: wrap; /* Ensures the content wraps to fit the container */
+  justify-content: center; /* Centers the villagers */
+}
+
+/* the arrow buttons themselves*/
+.btn-increase, .btn-decrease{
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+}
+
+/* for the left and right arrow key icon displays*/
+ion-icon{
+  height: 30px;
+  width: 30px;
+  color: whitesmoke;
+  cursor:pointer;
+}
+
+.player-name ion-icon{
+  width: 20px;
+  height: 20px;
+  margin:2px;
+  padding:2px;
+}
+.island-stars{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.btn-container{
+  height: 100px;
+  width: 100px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+}
+
+/* --------------------for the player section --------------*/
+.player-info{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:row;
+  flex:1;
+  height: 500px;
+  width: 70%;
+  min-width: 500px;
+  margin: 8px;
+  padding: 3px;
+  border-radius: 12px;
+  background-color: #a4dda2;
+  
+}
+
+.player{
+  min-width: 250px;
+  width: 20%;
+  height: 250px;
+}
+
+.player img{
+  height: 250px;
+  width: 220px;
+}
+
+.player-text{
+  min-width: 220px;
+  width: 70%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px;
+  margin: 5px;
+}
+
+.player-info h2{
+  font-size: 20px;
+  font-weight: 600px;
+  padding: 3px;
+}
+.player-name h2{
+  font-size: 25px;
+}
+
+.player-info h3{
+  font-size: 16px;
+  font-weight: 400px;
+  font-style: italic;
+}
+
+.player-faves, .player-name{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap:wrap;
+  border-radius: 12px;
+  margin: 4px;
+  width: 80%;
+}
+
+.player-name{
+  flex-direction: column;
+  padding: 6px;
+}
+
+.stat{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2px;
+  min-width: 120px;
+  flex:1;
+  width:25%;
+  height: 160px;
+  margin: 2px;
+}
+.stat p{
+  font-size: 20px;
+}
+/* --------------- flower counter ---------------------------*/
+.flower{ /* individual flower container with img and count*/
+  min-height: 80px;
+  width: 80px;
+  margin: 5px;
+}
+
+.flowers{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap:wrap;
+  padding: 6px;
+  background-color: #a4dda2;
+  border-radius:12px;
+  min-width: 250px;
+  width: 80%;
+  height:300px;
+}
+
+.flower-img img{
+  height: 50px;
+  width: 50px;
+}
+
+.flower-group{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 20px;
+  padding: 12px;
+  height: 200px;
+  position:relative;
+  top: 0;
+  left: 0;
+  height: 350px;
+
+}
+.all-flowers{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+.flower-title h2{
+  writing-mode: vertical-rl;
+  text-orientation: upright; 
+  font-size: 20px;
+}
+/*-----------------settings/option container -----------------*/
+.options-container{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction: row;
+  position: fixed;
+  bottom: 10vh;
+  left: 0vh;
+}
+
+.settings-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+  padding: 6px;
+  margin: 12px;
+  position:fixed;
+  bottom: 0;
+  left: 0vh;
+}
+
+/* ------settings/options hover description -----------*/
+.info{
+  visibility: hidden;
+  width: 200px;
+  background-color: rgb(85, 67, 35);
   color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 106%;
+  left: 170%;
+  margin-left: -60px;
 }
 
-.App-link {
-  color: #61dafb;
+.player-icon:hover .info,
+.flower-icon:hover .info, 
+.island-rating:hover .info, 
+.home:hover .info, 
+.goal-icon:hover .info,
+.bugs-discovered:hover .info,
+.fish-discovered:hover .info,
+.island-photos:hover .info{
+  visibility: visible;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*-----------------settings/option container -----------------*/
+.player-icon, .flower-icon, .island-rating, .home, .goal-icon,
+.bugs-discovered, .fish-discovered, .island-photos{
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+  padding: 6px;
+  margin: 10px;
+  cursor:pointer;
+}
+
+
+/*---------------------fish -------------------------*/
+.fish-container{
+  border-radius: 12px;
+  margin: 5px;
+  padding: 6px;
+  width: 300px;
+  height: 310px;
+  flex:1;
+  min-width: 300px;
+}
+
+/* gives the fish name and description*/
+.fish-info, .bug-info{
+  background-color:rgba(226, 219, 219, 0.5);
+  height: 105px;
+  border-radius: 12px;
+}
+
+.bug-info{
+  height: 50px;
+  padding: 3px;
+  margin-top: 15px;
+}
+
+.fishes-container{
+  margin: 5px;
+  border-radius: 12px;
+  padding: 3px;
+  height: auto;
+}
+
+.fishes-container h2{
+  font-size: 36px;
+  color:whitesmoke;
+}
+
+.fish-list{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+   background-color:#4fb9af ;
+   /* color options: #72c3d1 , #73cec2, #46b4b4, #4f46d3, #43b9a6, #c5c5c5 */
+  width: 90%;
+  flex-wrap:wrap;
+  height:auto;
+  width: auto;
+  margin: 50px;
+}
+
+.fish-pic [img]{
+  height: 150px;
+  width: 250px;
+}
+
+.fish-info h3{
+  font-size: 25px;
+  text-decoration:underline;
+}
+
+/* ----------------------------Bug container  ------------------------------*/
+.all-bug-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:row;
+  padding: 10px;
+  margin: 0px;
+  height: auto 0;
+}
+
+.bug-container{
+  height: 200px;
+  width: 200px;
+  margin: 20px;
+  padding: 4px;
+  flex: 0.50;
+}
+.bug-container img{
+  max-width: 150px;
+  max-height: 140px;
+}
+.bug-img{
+  margin-top: 10px;
+}
+.bug-list{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap:wrap;
+  width: 90%;
 }
