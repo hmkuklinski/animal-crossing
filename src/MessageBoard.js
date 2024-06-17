@@ -44,7 +44,7 @@ export default function MessageBoard({ messages, button }){
                 <h2 className="message-board-title">My Messages</h2>
                 <div className="message">
                     <div className="user-info">
-                        <div className="message-image"><img src="https://dodo.ac/np/images/thumb/3/36/Nookling_NH_Character_Icon.png/120px-Nookling_NH_Character_Icon.png" alt="message-icon" style={{backgroundColor: generateBackgroundColor()}}></img></div>
+                        <div className="message-image"><img src="https://dodo.ac/np/images/2/29/Fauna_NH_Villager_Icon.png" alt="message-icon" style={{backgroundColor: generateBackgroundColor()}}></img></div>
                         <div className="message-user">Fauna</div>
                     </div>
                     <div className="message-text">Hi Dearie!</div>
