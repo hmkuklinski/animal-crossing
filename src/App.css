@@ -3,8 +3,8 @@
   background-image: url('https://userstyles.org/style_screenshots/262815_after.png?r=1712304012');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: -350;
-  background-position-y: 0;
+  /* background-position-x: -350;
+  background-position-y: 0; */
   width: 100%;
   min-height: 100vh;
   height: auto;
@@ -351,13 +351,16 @@ ion-icon{
 .goal-icon:hover .info,
 .bugs-discovered:hover .info,
 .fish-discovered:hover .info,
-.island-photos:hover .info{
+.island-photos:hover .info,
+.message-icon:hover .info,
+.forum-icon:hover .info
+{
   visibility: visible;
 }
 
 /*-----------------settings/option container -----------------*/
 .player-icon, .flower-icon, .island-rating, .home, .goal-icon,
-.bugs-discovered, .fish-discovered, .island-photos{
+.bugs-discovered, .fish-discovered, .island-photos, .message-icon, .forum-icon{
   display:flex;
   align-items: center;
   justify-content: space-evenly;
@@ -365,7 +368,7 @@ ion-icon{
   width: 50px;
   border-radius: 12px;
   padding: 6px;
-  margin: 10px;
+  margin: 7px 7px 7px 12px;
   cursor:pointer;
 }
 
@@ -462,4 +465,181 @@ ion-icon{
   justify-content: center;
   flex-wrap:wrap;
   width: 90%;
+}
+
+
+.message-container, .message-form{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap:wrap;
+  flex-direction:column;
+}
+#form-div{
+  display:none;
+}
+#form-div{
+  margin-top:30px;
+  width: 80%;
+  font-size: 25px;
+}
+
+.message-form input{
+  width: 50%;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 25px;
+  text-align:center;
+}
+.message-form textarea{
+  width: 50%;
+  height: 100px;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.message-form label{
+  margin-top: 25px;
+}
+
+.message-form button{
+  margin: 14px;
+  height: 50px;
+  width: 150px;
+  border-radius: 12px;
+  background-color: #dbd832;
+  border:none;
+  cursor:pointer;
+}
+.message-form button:hover{
+  background-color:#dfb019;
+}
+/* --------message board -------------*/
+.message-board-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  border-radius: 12px;
+  margin: 40px 20px;
+  padding: 12px;
+  min-width: 350px;
+  width: 50%;
+  min-height: 150px;
+  max-height: 450px;
+  overflow-y:auto;
+  overflow-x: hidden;
+  height:auto;
+  background-color: #8B4513;
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  /* Firefox scrollbar color */
+  scrollbar-width: thin; 
+  scrollbar-color: #8B4513 #F4A460; 
+}
+
+
+.message-board-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-board-container::-webkit-scrollbar-track {
+    background: #F4A460;
+    border-radius: 12px; 
+}
+.message-board-title{
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.message{
+  padding: 8px;
+  min-width: 300px;
+}
+
+/* -------------message responses ---------*/
+.message-image img{
+  border-radius: 50%;
+  height: 50px;
+  width:50px;
+}
+.user-info{
+  margin: 0 40px;
+}
+
+.message{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:row;
+  width: 90%;
+}
+.message-text{
+  background-color:#F4A460;
+  border-radius: 12px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  height: 50px;
+  width: 90%;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.btn-add-msg{
+  /* position: absolute;
+  place-items:center; */
+  bottom: 8px;
+  background-color: #8B4513;
+  border: 2px solid #F4A460;
+  color:whitesmoke;
+  border-radius: 12px;
+  height: 30px;
+  width: 100px;
+  cursor:pointer;
+}
+.btn-add-msg:hover{
+  background-color: #F4A460;
+  border: 2px solid #F4A460;
+  color:black;
+}
+.add-message{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:row;
+  position:relative;
+  left: 20px;
+  bottom: 0px;
+  margin: 10px 5px 0px 5px;
+}
+
+
+@media screen and (max-width: 700px){
+
+  .message-board-container{
+    max-height: 540px;
+    min-width: 305px;
+    left: 0px;
+    top: 110px;
+  }
+  .message-container .title{
+    position: absolute;
+    left: 15px;
+    top: 0;
+  }
+  .message-container{
+    min-height: 400px;
+  }
+  .message-container #form-div{
+    margin-top: 150px;
+  }
+  
+  .player-info{
+    flex-direction:column;
+    width: 90%;
+  }
 }

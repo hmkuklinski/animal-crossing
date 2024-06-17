@@ -5,6 +5,7 @@ import Island from './island';
 import Fishes from './Fishes.js';
 import Bugs from './Bugs.js';
 import Photos from './Photos.js';
+import Message from './Message.js';
 import React, { useState} from 'react';
 
 function App() {
@@ -53,6 +54,14 @@ function App() {
           <ion-icon name="image-outline"></ion-icon>
           <span className="info">See Island</span>
         </div>
+
+        {/* the chat bubble will allow users to fill out form to add to array? */}
+        <div className="message-icon" onClick ={showMessage}>
+        <ion-icon name="pencil-outline"></ion-icon>
+          <span className="info">Leave a Message</span>
+        </div>
+
+        
     </div>
   );
 
@@ -105,6 +114,12 @@ function App() {
     setShowOptions(false);
     setBackgroundImage(defaultBackground);
   }
+
+  function showMessage(){
+    setCurrentPage('message');
+    setShowOptions(false);
+    setBackgroundImage(defaultBackground);
+  }
   //to display/hide the other options with a single icon click
   function displayOptions(){
     showOptions? setShowOptions(false): setShowOptions(true);
@@ -120,6 +135,7 @@ function App() {
       {currentPage === 'fish' && <Fishes  />}
       {currentPage === 'bugs' && <Bugs />}
       {currentPage === 'photos' && <Photos />}
+      {currentPage === 'message' && <Message />}
       {settings}
       {options}
     </div>
