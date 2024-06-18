@@ -36,19 +36,21 @@ export default function MessageBoard({ messages, button }){
     function getCharacter() {
         return characters[Math.floor(Math.random() * characters.length)];
     }
-    
+    const fauna=(
+        <div className="message">
+            <div className="user-info">
+                <div className="message-image"><img src="https://dodo.ac/np/images/2/29/Fauna_NH_Villager_Icon.png" alt="message-icon" style={{backgroundColor: generateBackgroundColor()}}></img></div>
+                <div className="message-user">Fauna</div>
+            </div>
+            <div className="message-text">Hi Dearie!</div>
+        </div>
+    );
 
     if (messages.length ===0){
         return (
             <div className="message-board-container">
                 <h2 className="message-board-title">My Messages</h2>
-                <div className="message">
-                    <div className="user-info">
-                        <div className="message-image"><img src="https://dodo.ac/np/images/2/29/Fauna_NH_Villager_Icon.png" alt="message-icon" style={{backgroundColor: generateBackgroundColor()}}></img></div>
-                        <div className="message-user">Fauna</div>
-                    </div>
-                    <div className="message-text">Hi Dearie!</div>
-                </div>
+                {fauna}
                 {button}
             </div>
         );
@@ -57,6 +59,7 @@ export default function MessageBoard({ messages, button }){
         return (
             <div className="message-board-container">
                 <h2 className="message-board-title">My Messages</h2>
+                {fauna}
                 {messages.map((msg, index) => (
                     <div key={index} className="message">
                         <div className="user-info">

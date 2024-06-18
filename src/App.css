@@ -642,4 +642,17 @@ ion-icon{
     flex-direction:column;
     width: 90%;
   }
+  /* .player-icon, .flower-icon, .island-rating, .home, .goal-icon,
+  .bugs-discovered, .fish-discovered, .island-photos, .message-icon, .forum-icon{
+    padding: 4px;
+    height: 25px;
+    width: 25px;
+    margin: 12px 16px 12px 12px;
+  }
+  .options-container{
+    margin-bottom: 12px;
+    margin-left: 10px;
+    min-height: 300px;
+  } */
+  
 }
