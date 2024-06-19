@@ -87,7 +87,7 @@ export default function Villager(){
 
     //function to see how wide the window is:
     const checkWindow= function(){
-        setScrollDisplay(window.innerWidth > 850);
+        setScrollDisplay(window.innerWidth > 820); //boolean for if screen needs to be displayAll or scroll
     }
 
     //how to change the display:
@@ -118,10 +118,10 @@ export default function Villager(){
     const displayAll = (<div className="villager-box">
             {villagers.map((villager) => (
                 <div className= "villager-container" key={villager.name} style={{backgroundColor: villager.colorCode}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <div className="villager-icon">
+                    <div className="villager-icon-all">
                         {villager.image}
                     </div>
-                    <div className="villager-info" style={{display: 'block'}}>
+                    <div className="villager-info-all" style={{display: 'block'}}>
                         <h2>{villager.name}</h2>
                         <h3>Type: {villager.type}</h3>
                         <h3>Color: {villager.color}</h3>

@@ -102,9 +102,12 @@ export default function Photos(){
 
     return (
         <div className="photo-container">
-            <div className="title"><h1>Island Screenshots</h1></div>
+            <div className="title"><h1>{friend? "My Friends": "My Island"}</h1></div>
             <div className="change-display-type">
-                <button className="btn-type" onClick={changeType}>Change to {friend? "Island Photos": "Friends"}</button>
+                <button className="btn-type" onClick={changeType}>
+                    <div className="type-item">{friend? <ion-icon name="people"></ion-icon>: <ion-icon name="images"></ion-icon>}</div>
+                    <div className="type-item">{friend? "Suggested Photos: Island": "Suggested Photos: Friends"}</div> 
+                </button>
             </div>
             <div className="images">
             {displayedImages.map((image, index) => (
