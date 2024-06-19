@@ -6,14 +6,14 @@ import Fishes from './Fishes.js';
 import Bugs from './Bugs.js';
 import Photos from './Photos.js';
 import Message from './Message.js';
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 
 function App() {
   const [showOptions, setShowOptions]= useState(false);
   
   const settings = (
     <div className="settings-container" onClick={displayOptions} title="Page Options">
-      <ion-icon name="settings-outline"></ion-icon>
+      <ion-icon name="menu-outline"></ion-icon>
     </div>
   );
   //the container with the icons to change the page display:
@@ -76,8 +76,40 @@ function App() {
   const flowerBackground = "https://wallpaperswide.com/download/sprout_vector_art-wallpaper-1152x768.jpg";
   const bugBackground = "https://w0.peakpx.com/wallpaper/755/954/HD-wallpaper-animal-crossing-acnh-animal-crossing.jpg";
   const fishBackground = "https://www.shutterstock.com/image-vector/illustration-frame-koi-swimming-pond-600nw-2331554297.jpg";
+  let photoBackground = "https://th.bing.com/th/id/R.1f07679224da224ac0839c645742bfbb?rik=YXdt3NclX%2fgmAg&riu=http%3a%2f%2fclipground.com%2fimages%2fbulletin-board-clipart-6.jpg&ehk=LIM7dEt1wdpjtgCeD3aq9s0Rzj2txtCRBPIc27zDgro%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1";
   const [backgroundImage, setBackgroundImage]= useState(defaultBackground);
+  const [backgroundSize, setBackgroundSize] = useState('cover');
 
+  const [width, setWidth]= useState(window.innerWidth);
+  
+
+  function handleResize(){
+    setWidth(window.innerWidth);
+  }
+  //for changing photo background if on smaller screen!
+  useEffect(()=>{
+    window.addEventListener("resize", handleResize);
+    return(
+      ()=>{
+        window.removeEventListener("resize", handleResize);
+      }
+    )
+  });
+
+  //if width or current page changes, check the width and set background image accordingly
+  useEffect(() => {
+    if (width <= 915) {
+      setBackgroundImage(defaultBackground);
+    } else {
+      if (currentPage === 'photos') {
+        setBackgroundImage(photoBackground);
+        setBackgroundSize('contain');
+      }
+      else {
+        setBackgroundSize('cover');
+      }
+    }
+  }, [width, currentPage, photoBackground]);
   //const backgroundImage = currentPage === 'flowers' ? flowerBackground : defaultBackground;
 
   //these functions allow for change of state depending on icon clicked:
@@ -112,7 +144,7 @@ function App() {
   function showIslandPhotos(){
     setCurrentPage('photos');
     setShowOptions(false);
-    setBackgroundImage(defaultBackground);
+    setBackgroundImage(photoBackground);
   }
 
   function showMessage(){
