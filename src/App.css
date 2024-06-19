@@ -3,8 +3,6 @@
   background-image: url('https://userstyles.org/style_screenshots/262815_after.png?r=1712304012');
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-position-x: -350;
-  background-position-y: 0; */
   width: 100%;
   min-height: 100vh;
   height: auto;
@@ -52,21 +50,41 @@ h2, h3{
   font-size: 50px;
 }
 
-.container, .island-container, .flower-container{
+/* ---------BASIC FLEX ROW !!!! ------------------------------*/
+.island-stars, 
+.player-faves, .player-name, .player-info,
+.all-bug-container, .bug-list, 
+.options-container, .message,
+.add-message,.photo-container,
+.image-container, .images,
+.image-navigation, .btn-type
+{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+/* -----------------------------------------------------------*/
+
+/* ----------FLEXBOX COLUMN BASIC!!!! -------*/
+.container, .island-container, .flower-container,
+.player-text, .stat, .flowers
+{
   display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+/*--------------------------------------------*/
+.container, .island-container, .flower-container{
   width: 100%;
   overflow:auto;
 }
-
 .island-container{
   margin: 10px 0px;
-
 }
 
-/* --------------------------- for the villager's boxes ---------------------*/
+/* ------------------VILLAGERS ------------------------------------*/
 .villager-scroll, .fish-list{
   display:flex;
   align-items: center;
@@ -95,7 +113,7 @@ h2, h3{
 }
 .villager-icon{
   border-radius: 12px;
-  width: 50%;
+  width: 40%;
   margin: 4px;
 }
 
@@ -106,13 +124,15 @@ h2, h3{
 
 .villager-description{
   display:none;
-  padding: 10px;
+  padding: 12px;
   opacity: 0; /* Initially hidden */
   transition: opacity 0.4s ease; /* Smooth transition */
 }
 
-.villager-container:hover .villager-description{
-  opacity: 1; /* Show on hover */
+.villager-container:hover .villager-info{
+  opacity: 1; 
+  position: absolute;
+  top: 100px;
 }
 
 .villager-name{
@@ -130,11 +150,11 @@ h2, h3{
 
 .villager-box {
   display: flex;
-  flex-wrap: wrap; /* Ensures the content wraps to fit the container */
-  justify-content: center; /* Centers the villagers */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* the arrow buttons themselves*/
+/* Villager's arrow buttons*/
 .btn-increase, .btn-decrease{
   border-radius: 50%;
   background-color: transparent;
@@ -155,13 +175,6 @@ ion-icon{
   margin:2px;
   padding:2px;
 }
-.island-stars{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-
 .btn-container{
   height: 100px;
   width: 100px;
@@ -173,10 +186,6 @@ ion-icon{
 
 /* --------------------for the player section --------------*/
 .player-info{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
   flex:1;
   height: 500px;
   width: 70%;
@@ -185,7 +194,6 @@ ion-icon{
   padding: 3px;
   border-radius: 12px;
   background-color: #a4dda2;
-  
 }
 
 .player{
@@ -202,10 +210,6 @@ ion-icon{
 .player-text{
   min-width: 220px;
   width: 70%;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 5px;
   margin: 5px;
 }
@@ -226,10 +230,6 @@ ion-icon{
 }
 
 .player-faves, .player-name{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
   flex-wrap:wrap;
   border-radius: 12px;
   margin: 4px;
@@ -242,10 +242,6 @@ ion-icon{
 }
 
 .stat{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 2px;
   min-width: 120px;
   flex:1;
@@ -264,10 +260,6 @@ ion-icon{
 }
 
 .flowers{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   flex-wrap:wrap;
   padding: 6px;
   background-color: #a4dda2;
@@ -302,6 +294,8 @@ ion-icon{
   justify-content: center;
   flex-direction: row;
   flex-wrap:wrap;
+  height: auto;
+  width: 95%;
 }
 .flower-title h2{
   writing-mode: vertical-rl;
@@ -310,10 +304,6 @@ ion-icon{
 }
 /*-----------------settings/option container -----------------*/
 .options-container{
-  display:flex;
-  align-items:center;
-  justify-content: center;
-  flex-direction: row;
   position: fixed;
   bottom: 10vh;
   left: 0vh;
@@ -409,18 +399,12 @@ ion-icon{
   height: auto;
 }
 
-.fishes-container h2{
-  font-size: 36px;
-  color:whitesmoke;
-}
-
 .fish-list{
   display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-   background-color:#4fb9af ;
-   /* color options: #72c3d1 , #73cec2, #46b4b4, #4f46d3, #43b9a6, #c5c5c5 */
+  background-color:transparent;
   width: 90%;
   flex-wrap:wrap;
   height:auto;
@@ -440,10 +424,6 @@ ion-icon{
 
 /* ----------------------------Bug container  ------------------------------*/
 .all-bug-container{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
   padding: 10px;
   margin: 0px;
   height: auto 0;
@@ -464,10 +444,6 @@ ion-icon{
   margin-top: 10px;
 }
 .bug-list{
-  display:flex;
-  flex-direction:row;
-  align-items: center;
-  justify-content: center;
   flex-wrap:wrap;
   width: 90%;
 }
@@ -574,10 +550,6 @@ ion-icon{
 }
 
 .message{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
   width: 90%;
 }
 .message-text{
@@ -612,10 +584,6 @@ ion-icon{
   color:black;
 }
 .add-message{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
   position:relative;
   left: 20px;
   bottom: 0px;
@@ -623,15 +591,11 @@ ion-icon{
 }
 
 .image-container, .photo-container, .images{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
   flex-wrap:wrap;
 }
 .images{
   width: 86%;
-  height: 480px;
+  height: 400px;
   position:relative;
   margin-bottom: 14px;
   top: 15px;
@@ -650,19 +614,25 @@ ion-icon{
   flex-direction:column;
   margin: 0;
 }
-
-.image-navigation{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:row;
-}
 .btn-type{
+  font-size: 20px;
   height: 40px;
-  width: 150px;
+  width: 320px;
   border-radius: 12px;
-  padding: 4px;
-  background-color:#a4dda2;
+  border: 1px solid whitesmoke;
+  padding: 8px;
+  background-color: #a4dda2;
+  
+  cursor:pointer;
+}
+.btn-type:hover{
+  background-color:whitesmoke;
+}
+.btn-type ion-icon{
+  color:black;
+}
+.type-item{
+  margin: 5px;
 }
 
 @media screen and (max-width: 700px){
@@ -698,9 +668,7 @@ ion-icon{
     margin: 5px;
     padding: 10px 0px 55px 0px;
   }
-  .photo-container{
-    height: 700px;
-  }
+  
   /* .player-icon, .flower-icon, .island-rating, .home, .goal-icon,
   .bugs-discovered, .fish-discovered, .island-photos, .message-icon, .forum-icon{
     padding: 4px;

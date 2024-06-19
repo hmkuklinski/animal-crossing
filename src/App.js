@@ -6,7 +6,7 @@ import Fishes from './Fishes.js';
 import Bugs from './Bugs.js';
 import Photos from './Photos.js';
 import Message from './Message.js';
-import React, { useState, useEffect} from 'react';
+import React, { useState} from 'react';
 
 function App() {
   const [showOptions, setShowOptions]= useState(false);
@@ -69,88 +69,39 @@ function App() {
   //setting the current page display (and allowing changes to current page state)
   //want it to display villagers on default
   const [currentPage, setCurrentPage]= useState('villagers');
-
-
-  //use for changing background on page selection from icons
-  const defaultBackground = "https://userstyles.org/style_screenshots/262815_after.png?r=1712304012";
-  const flowerBackground = "https://wallpaperswide.com/download/sprout_vector_art-wallpaper-1152x768.jpg";
-  const bugBackground = "https://w0.peakpx.com/wallpaper/755/954/HD-wallpaper-animal-crossing-acnh-animal-crossing.jpg";
-  const fishBackground = "https://www.shutterstock.com/image-vector/illustration-frame-koi-swimming-pond-600nw-2331554297.jpg";
-  let photoBackground = "https://th.bing.com/th/id/R.1f07679224da224ac0839c645742bfbb?rik=YXdt3NclX%2fgmAg&riu=http%3a%2f%2fclipground.com%2fimages%2fbulletin-board-clipart-6.jpg&ehk=LIM7dEt1wdpjtgCeD3aq9s0Rzj2txtCRBPIc27zDgro%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1";
-  const [backgroundImage, setBackgroundImage]= useState(defaultBackground);
-  const [backgroundSize, setBackgroundSize] = useState('cover');
-
-  const [width, setWidth]= useState(window.innerWidth);
   
-
-  function handleResize(){
-    setWidth(window.innerWidth);
-  }
-  //for changing photo background if on smaller screen!
-  useEffect(()=>{
-    window.addEventListener("resize", handleResize);
-    return(
-      ()=>{
-        window.removeEventListener("resize", handleResize);
-      }
-    )
-  });
-
-  //if width or current page changes, check the width and set background image accordingly
-  useEffect(() => {
-    if (width <= 915) {
-      setBackgroundImage(defaultBackground);
-    } else {
-      if (currentPage === 'photos') {
-        setBackgroundImage(photoBackground);
-        setBackgroundSize('contain');
-      }
-      else {
-        setBackgroundSize('cover');
-      }
-    }
-  }, [width, currentPage, photoBackground]);
-  //const backgroundImage = currentPage === 'flowers' ? flowerBackground : defaultBackground;
-
   //these functions allow for change of state depending on icon clicked:
   function showFlowers(){
     setCurrentPage('flowers');
     setShowOptions(false);
-    setBackgroundImage(flowerBackground);
   }
   function showVillagers(){
     setCurrentPage('villagers');
     setShowOptions(false);
-    setBackgroundImage(defaultBackground);
   }
   function showPlayer(){
     setCurrentPage('player');
     setShowOptions(false);
-    setBackgroundImage(defaultBackground);
   }
 
   function showBugs(){
     setCurrentPage('bugs');
     setShowOptions(false);
-    setBackgroundImage(bugBackground);
   }
 
   function showFish(){
     setCurrentPage('fish');
     setShowOptions(false);
-    setBackgroundImage(fishBackground);
   }
 
   function showIslandPhotos(){
     setCurrentPage('photos');
     setShowOptions(false);
-    setBackgroundImage(photoBackground);
   }
 
   function showMessage(){
     setCurrentPage('message');
     setShowOptions(false);
-    setBackgroundImage(defaultBackground);
   }
   //to display/hide the other options with a single icon click
   function displayOptions(){
@@ -159,7 +110,7 @@ function App() {
 
   //the return function of the app (aka the main display!!)
   return (
-    <div className="App" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className="App">
       {/* to check the state and display the respective components */}
       {currentPage === 'villagers' && <Villager />}
       {currentPage === 'player' && <Island />}

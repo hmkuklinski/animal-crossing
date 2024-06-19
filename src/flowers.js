@@ -1,4 +1,5 @@
 import Flower from "./flower";
+import React, {useState, useEffect} from "react";
 export default function Flowers(){
     //will have all the necessary elements for each color rose- type, image link, alternate description, count of how many I have on my island
     const rosesData= [
@@ -114,23 +115,89 @@ export default function Flowers(){
             data: pansyData
         }
     ];
+    // State for current flower group page
+    const [flowerPage, setFlowerPage] = useState(1);
+
+    //useEffect to change the number of photos displayed based on screen
+    const [width, setWidth]= useState(window.innerWidth);
+    const [imagesPerPage, setImagesPerPage] = useState(3);
+
+    //use effect for the window addEventListener/clean up:
+    function handleResize(){
+        setWidth(window.innerWidth); //update the window size based on new value
+    }
+
+    useEffect(()=>{ 
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        //clean up eventListener
+        return () => {
+            window.removeEventListener("resize", handleResize);
+          };
+    }, []);
+
+    //when width changes, will check/change the number of images per page if needed
+    useEffect(()=> {
+        if (width < 850) {
+            setImagesPerPage(1);
+        } 
+        else if (width< 1275) {
+            setImagesPerPage(2);
+        } 
+        else {
+            setImagesPerPage(3);
+        }
+    }, [width]);
+
+    //for paging display
+    const startIndex = flowerPage * imagesPerPage;
+    const endIndex = startIndex + imagesPerPage;
+    const displayedImages = allFlowers.slice(startIndex, endIndex);
+
+    //get the total number of pages- round up the length of array/images per page:
+    const totalPages = Math.ceil(allFlowers.length/imagesPerPage);
+
+    //function to generate proper number of dots:
+    function generateNavDots(){
+        const dots = [];
+        for (let index = 0; index < totalPages; index++) {
+            //add active class to existing className if index matches current flowerPage value
+            //if current flowerPage, have flower filled in with whitesmoke, else will be outline in green color
+            dots.push(
+                <div
+                    key={index}
+                    className={`page-selection ${index === flowerPage ? 'active' : ''}`}
+                    onClick={() => setFlowerPage(index)}
+                    style={{ cursor: 'pointer', padding: '5px' }}
+                >
+                    <ion-icon name={index === flowerPage ? "flower" : "flower-outline"} style={{color: index === flowerPage ? "whitesmoke": "#a4dda2"}}></ion-icon>
+                </div>
+            );
+        }
+        return dots; //will return the number of dots needed based on pages
+    };
 
     return (
-        <div className="f-container">
+        <div className="container">
             <div className="title"><h1>My Flowers</h1></div>
             <div className="all-flowers">
-            {allFlowers.map((flowers, index) => (
+            {displayedImages.map((flowers, index) => (
                 <div key={index} className="flower-group">
                     <div className="flower-title">
                         <h2>{flowers.flowerGroup}</h2>
                     </div>
-                     <div className="flowers">
+                    <div className="flowers">
                         {flowers.data.map((flower, flowerIndex) => (
                             <Flower key={flowerIndex} flowerData={flower} />
                         ))}
                     </div>
                 </div>
             ))}
+
+            </div>
+            <div className="image-navigation">
+                {generateNavDots()}
             </div>
         </div>
     );
