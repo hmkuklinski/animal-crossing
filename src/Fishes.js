@@ -170,7 +170,7 @@ export default function Fishes(){
             setImagesPerPage(4);
         }
         else {
-            setImagesPerPage(10);
+            setImagesPerPage(8);
         }
     }, [width]);
 
