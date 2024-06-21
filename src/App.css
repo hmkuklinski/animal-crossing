@@ -373,24 +373,20 @@ ion-icon{
   border-radius: 12px;
   margin: 5px;
   padding: 6px;
-  width: 300px;
-  height: 310px;
+  width: 50%;
+  height: 275px;
   flex:1;
-  min-width: 300px;
+  max-width: 300px;
 }
 
 /* gives the fish name and description*/
 .fish-info, .bug-info{
   background-color:rgba(226, 219, 219, 0.5);
-  height: 105px;
   border-radius: 12px;
 }
-
-.bug-info{
-  background-color:rgba(27, 116, 61, 0.5);
-  height: 50px;
-  padding: 3px;
-  margin-top: 15px;
+.fish-info{
+  height: 105px;
+  font-size: 13px;
 }
 .bug-info h3, .fish-info h3{
   color:whitesmoke;
@@ -400,7 +396,7 @@ ion-icon{
   margin: 5px;
   border-radius: 12px;
   padding: 3px;
-  height: auto;
+  height: auto 0;
 }
 
 .fish-list{
@@ -408,17 +404,20 @@ ion-icon{
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  width: 90%;
+  max-width: 80%;
+  margin-left: 60px;
   flex-wrap:wrap;
   height:auto;
   min-height: 600px;
   width: auto;
-  margin: 50px;
 }
 
 .fish-pic [img]{
   height: 150px;
   width: 250px;
+}
+.fish-pic{
+  height: 150px;
 }
 .fish-info{
   background-color: rgba(3, 59, 3, 0.363);
@@ -456,13 +455,17 @@ ion-icon{
   width: 90%;
 }
 #bug-nav, #fish-nav{
-  position: absolute;
+  position: relative;
   bottom: 0px;
   width: 100%;
 }
-#fish-nav{
-  position:relative;
+.bug-info{
+  background-color:rgba(27, 116, 61, 0.5);
+  height: 50px;
+  padding: 3px;
+  margin-top: 15px;
 }
+
 
 
 .message-container, .message-form{

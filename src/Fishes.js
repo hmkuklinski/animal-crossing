@@ -161,16 +161,13 @@ export default function Fishes(){
     //when width changes, will check/change the number of images per page if needed
     useEffect(()=> {
         if (width<462){
-            setImagesPerPage(10); //will prevent the navdot overflow into menu option
+            setImagesPerPage(12); //will prevent the navdot overflow into menu option
         }
-        else if (width < 680) {
-            setImagesPerPage(6);
-        } 
         else if (width<1120){
-            setImagesPerPage(4);
+            setImagesPerPage(6);
         }
         else {
-            setImagesPerPage(7);
+            setImagesPerPage(8);
         }
     }, [width]);
 
