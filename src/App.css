@@ -387,9 +387,13 @@ ion-icon{
 }
 
 .bug-info{
+  background-color:rgba(27, 116, 61, 0.5);
   height: 50px;
   padding: 3px;
   margin-top: 15px;
+}
+.bug-info h3, .fish-info h3{
+  color:whitesmoke;
 }
 
 .fishes-container{
@@ -404,10 +408,10 @@ ion-icon{
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background-color:transparent;
   width: 90%;
   flex-wrap:wrap;
   height:auto;
+  min-height: 600px;
   width: auto;
   margin: 50px;
 }
@@ -416,7 +420,10 @@ ion-icon{
   height: 150px;
   width: 250px;
 }
-
+.fish-info{
+  background-color:rgba(27, 116, 61, 0.5);
+  color:whitesmoke;
+}
 .fish-info h3{
   font-size: 25px;
   text-decoration:underline;
@@ -430,7 +437,7 @@ ion-icon{
 }
 
 .bug-container{
-  height: 200px;
+  height: 230px;
   width: 200px;
   margin: 20px;
   padding: 4px;
@@ -446,6 +453,14 @@ ion-icon{
 .bug-list{
   flex-wrap:wrap;
   width: 90%;
+}
+#bug-nav, #fish-nav{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+#fish-nav{
+  position:relative;
 }
 
 
@@ -667,6 +682,9 @@ ion-icon{
     background-color: whitesmoke;
     margin: 5px;
     padding: 10px 0px 55px 0px;
+  }
+  #bug-nav, #fish-nav{
+    position:relative;
   }
   
   /* .player-icon, .flower-icon, .island-rating, .home, .goal-icon,

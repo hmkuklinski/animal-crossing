@@ -1,4 +1,5 @@
 import Fish from './Fish.js';
+import React, {useState, useEffect} from "react";
 
 export default function Fishes(){
     const fishArray=[
@@ -134,15 +135,84 @@ export default function Fishes(){
         }
         
       ];
+      //takes in the fishList info from fishs.js and creates a fish component for each fish in list!
+    // State for current fish group page
+    const [fishPage, setFishPage] = useState(0);
+
+    //useEffect to change the number of photos displayed based on screen
+    const [width, setWidth]= useState(window.innerWidth);
+    const [imagesPerPage, setImagesPerPage] = useState(8);
+
+    //use effect for the window addEventListener/clean up:
+    function handleResize(){
+        setWidth(window.innerWidth); //update the window size based on new value
+    }
+
+    useEffect(()=>{ 
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        //clean up eventListener
+        return () => {
+            window.removeEventListener("resize", handleResize);
+          };
+    }, []);
+
+    //when width changes, will check/change the number of images per page if needed
+    useEffect(()=> {
+        if (width<462){
+            setImagesPerPage(10); //will prevent the navdot overflow into menu option
+        }
+        else if (width < 680) {
+            setImagesPerPage(6);
+        } 
+        else if (width<1120){
+            setImagesPerPage(4);
+        }
+        else {
+            setImagesPerPage(6);
+        }
+    }, [width]);
+
+    //for paging display
+    const startIndex = fishPage * imagesPerPage;
+    const endIndex = startIndex + imagesPerPage;
+    const displayedImages = fishArray.slice(startIndex, endIndex);
+
+    //get the total number of pages- round up the length of array/images per page:
+    const totalPages = Math.ceil(fishArray.length/imagesPerPage);
+
+    //function to generate proper number of dots:
+    function generateNavDots(){
+        const dots = [];
+        for (let index = 0; index < totalPages; index++) {
+            //add active class to existing className if index matches current fishPage value
+            //if current fishPage, have fish filled in with whitesmoke, else will be outline in green color
+            dots.push(
+                <div
+                    key={index}
+                    className={`page-selection ${index === fishPage ? 'active' : ''}`}
+                    onClick={() => setFishPage(index)}
+                    style={{ cursor: 'pointer', padding: '5px' }}
+                >
+                    <ion-icon name={index === fishPage ? "fish" : "fish-outline"} style={{color: index === fishPage ? "whitesmoke": "#a4dda2"}}></ion-icon>
+                </div>
+            );
+        }
+        return dots;
+    }
     
     //return function will pass in fishArray and create a Fish component for each fish entry
     return(
         <div className="fishes-container">
             <div className="title"><h1>Fishes Discovered: </h1></div>
             <div className="fish-list">
-                {fishArray.map(function(fish, index){
+                {displayedImages.map(function(fish, index){
                     return <Fish key={index} name={fish.name} imageUrl={fish.imageUrl} description={fish.description} />
                 })}
+            </div>
+            <div className="image-navigation" id="fish-nav">
+                {generateNavDots()}
             </div>
         </div>
     );
