@@ -116,7 +116,7 @@ export default function Flowers(){
         }
     ];
     // State for current flower group page
-    const [flowerPage, setFlowerPage] = useState(1);
+    const [flowerPage, setFlowerPage] = useState(0);
 
     //useEffect to change the number of photos displayed based on screen
     const [width, setWidth]= useState(window.innerWidth);
