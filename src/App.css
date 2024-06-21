@@ -392,7 +392,7 @@ ion-icon{
   padding: 3px;
   margin-top: 15px;
 }
-.bug-info h3{
+.bug-info h3, .fish-info h3{
   color:whitesmoke;
 }
 
@@ -408,7 +408,6 @@ ion-icon{
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background-color:purple;
   width: 90%;
   flex-wrap:wrap;
   height:auto;
@@ -421,7 +420,10 @@ ion-icon{
   height: 150px;
   width: 250px;
 }
-
+.fish-info{
+  background-color:rgba(27, 116, 61, 0.5);
+  color:whitesmoke;
+}
 .fish-info h3{
   font-size: 25px;
   text-decoration:underline;
