@@ -1,6 +1,6 @@
 <div align="center">
 
-# Animal Crossing Stats Project
+# Nook's Notebook
 
 ![animal_crossing](https://github.com/hmkuklinski/animal-crossing/assets/143479397/b7320c88-a23d-4ea3-af98-87cbd6acd62a)
 
