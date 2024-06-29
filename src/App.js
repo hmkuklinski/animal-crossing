@@ -1,4 +1,6 @@
-import './App.css';
+import React, { useState } from 'react';
+//for linking the routes (the different components/ "pages")
+import { Routes, Route, Link } from 'react-router-dom';
 import Villager from './villager';
 import Flowers from './flowers';
 import Island from './island';
@@ -6,119 +8,99 @@ import Fishes from './Fishes.js';
 import Bugs from './Bugs.js';
 import Photos from './Photos.js';
 import Message from './Message.js';
-import React, { useState} from 'react';
+import './App.css';
 
 function App() {
-  const [showOptions, setShowOptions]= useState(false);
-  
+  const [showOptions, setShowOptions] = useState(false);
+
+  // Function to toggle the display of options
+  function displayOptions() {
+    setShowOptions(prevShowOptions => !prevShowOptions);
+  }
+
+  // The settings container with the icon to toggle options display
   const settings = (
     <div className="settings-container" onClick={displayOptions} title="Page Options">
       <ion-icon name="menu-outline"></ion-icon>
     </div>
   );
-  //the container with the icons to change the page display:
+  /* ----- notes about routing:
+  --> prevents full reloading of window with click
+  --> use the Routes to hold the individual Route
+  --> individual Route includes the path and the element we want to display when clicked
+      <Routes>
+          <Route path="/path" element= {<Component />} />
+      </Routes>
+      (put this in the return!)
+  --> To allow path to work, need to insert a <Link to="/path">Content </Link> 
+      (will add this inside the respective div --> if they click in the div, will route to the /path)
+  ---------------------------------*/
+
+  //routing eliminates need to call function to change currentPage state (and compare value in return to display proper component)
+  //will display based on path instead!
+
+  // The container with the icons to change the page display
   const options = (
-    <div className="options-container" style={{display: showOptions? 'block': 'none'}}>
-        {/* the home icon displays the villagers information*/}
-        <div className="home" onClick={showVillagers}>
-            <ion-icon name="home-outline"></ion-icon>
-            <span className="info">Meet My Villagers</span>
-        </div>
-
-        {/* the player icon displays my player information */}
-        <div className="player-icon" onClick={showPlayer}>
-            <ion-icon name="person-outline"></ion-icon>
-            <span className="info">Player Information</span>
-        </div>
-
-        {/* the flower icon displays the flower information */}
-        <div className="flower-icon" onClick={showFlowers}>
-            <ion-icon name="flower-outline"></ion-icon>
-            <span className="info">Flower Tracker</span>
-        </div>
-
-        {/* the bug icon will display the bugs I've discovered */}
-        <div className="bugs-discovered" onClick={showBugs}>
+    <div className="options-container" style={{ display: showOptions ? 'block' : 'none' }}>
+      <div className="home">
+        <Link to="/">
+          <ion-icon name="home-outline"></ion-icon>
+          <span className="info">Meet My Villagers</span>
+        </Link>
+      </div>
+      <div className="player-icon">
+        <Link to="/player">
+          <ion-icon name="person-outline"></ion-icon>
+          <span className="info">Player Information</span>
+        </Link>
+      </div>
+      <div className="flower-icon">
+        <Link to="/flowers">
+          <ion-icon name="flower-outline"></ion-icon>
+          <span className="info">Flower Tracker</span>
+        </Link>
+      </div>
+      <div className="bugs-discovered">
+        <Link to="/bugs">
           <ion-icon name="bug-outline"></ion-icon>
           <span className="info">Bugs Discovered</span>
-        </div>
-
-        {/* the fish icon will display the fish I've discovered */}
-        <div className="fish-discovered" onClick={showFish}>
+        </Link>
+      </div>
+      <div className="fish-discovered">
+        <Link to="/fish">
           <ion-icon name="fish-outline"></ion-icon>
           <span className="info">Fish Caught</span>
-        </div>
-
-        {/* the photo icon will display pictures of my island */}
-        <div className="island-photos" onClick={showIslandPhotos}>
+        </Link>
+      </div>
+      <div className="island-photos">
+        <Link to="/photos">
           <ion-icon name="image-outline"></ion-icon>
           <span className="info">See Island</span>
-        </div>
-
-        {/* the chat bubble will allow users to fill out form to add to array? */}
-        <div className="message-icon" onClick ={showMessage}>
-        <ion-icon name="pencil-outline"></ion-icon>
+        </Link>
+      </div>
+      <div className="message-icon">
+        <Link to="/message">
+          <ion-icon name="pencil-outline"></ion-icon>
           <span className="info">Leave a Message</span>
-        </div>
-
-        
+        </Link>
+      </div>
     </div>
   );
 
-
-  //setting the current page display (and allowing changes to current page state)
-  //want it to display villagers on default
-  const [currentPage, setCurrentPage]= useState('villagers');
-  
-  //these functions allow for change of state depending on icon clicked:
-  function showFlowers(){
-    setCurrentPage('flowers');
-    setShowOptions(false);
-  }
-  function showVillagers(){
-    setCurrentPage('villagers');
-    setShowOptions(false);
-  }
-  function showPlayer(){
-    setCurrentPage('player');
-    setShowOptions(false);
-  }
-
-  function showBugs(){
-    setCurrentPage('bugs');
-    setShowOptions(false);
-  }
-
-  function showFish(){
-    setCurrentPage('fish');
-    setShowOptions(false);
-  }
-
-  function showIslandPhotos(){
-    setCurrentPage('photos');
-    setShowOptions(false);
-  }
-
-  function showMessage(){
-    setCurrentPage('message');
-    setShowOptions(false);
-  }
-  //to display/hide the other options with a single icon click
-  function displayOptions(){
-    showOptions? setShowOptions(false): setShowOptions(true);
-  }
-
-  //the return function of the app (aka the main display!!)
   return (
     <div className="App">
-      {/* to check the state and display the respective components */}
-      {currentPage === 'villagers' && <Villager />}
-      {currentPage === 'player' && <Island />}
-      {currentPage === 'flowers' && <Flowers />}      
-      {currentPage === 'fish' && <Fishes  />}
-      {currentPage === 'bugs' && <Bugs />}
-      {currentPage === 'photos' && <Photos />}
-      {currentPage === 'message' && <Message />}
+      {/* The Routes component to define the route paths
+          ---> if Route path is "/path", then display element
+      */}
+      <Routes>
+        <Route path="/" element={<Villager />} />
+        <Route path="/player" element={<Island />} />
+        <Route path="/flowers" element={<Flowers />} />
+        <Route path="/fish" element={<Fishes />} />
+        <Route path="/bugs" element={<Bugs />} />
+        <Route path="/photos" element={<Photos />} />
+        <Route path="/message" element={<Message />} />
+      </Routes>
       {settings}
       {options}
     </div>
